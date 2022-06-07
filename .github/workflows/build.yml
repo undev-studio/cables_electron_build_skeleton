@@ -26,12 +26,12 @@ jobs:
         id: create-executable
         run: exec npm run package
       - name: upload build
-        uses: meeDamian/github-release@v2.0.3
+        uses: softprops/action-gh-release@v1
         with:
+          name: run-${{ github.run_number }}
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: run-${{ github.run_number }}
-          gzip: folders
-          files: >
+          tag_name: run-${{ github.run_number }}
+          files: |
             ./build/${{ env.PATCH_NAME }}-win32-x64.zip
             ./build/${{ env.PATCH_NAME }}-darwin-x64.zip
             ./build/${{ env.PATCH_NAME }}-darwin-arm64.zip
